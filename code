@@ -1,0 +1,180 @@
+const team = {
+
+  _players : [{firstName:'Pablo',lastName:'Sanchez',age:11},
+              {firstName:'Mike',lastName:'Jognson',age:12},],  // <=== end of _players
+
+  _games:[{opponent:'Broncos',ourPoints: 42,opponentsPoint:46}], //<=== of of _games
+
+
+//getters for players and games:
+get players() {
+  return this._players;
+},
+
+get games() {
+  return this._games;
+},
+
+
+
+
+//adding new players:
+addplayer(firstName,lastName,age) {
+
+  let newPlayer = {};
+  newPlayer['firstName']=firstName;
+  newPlayer['lastName']=lastName;
+  newPlayer['age'] = age;
+  this.players.push(newPlayer);
+}, //<==== end of addPlayer()
+
+
+
+
+addGame(opponent,ourPoints,opponentsPoint) {
+  let newgame = {};
+
+  newgame['opponent'] = opponent;
+  newgame['ourPoints'] = ourPoints;
+  newgame['opponentsPoint'] =opponentsPoint;
+  this.games.push(newgame);  //<=== end of addGame
+}, //<==== end of add game
+
+
+
+
+
+// calculate totals:
+getGamesTotals() {
+
+  let ourPoints = 0;
+  let opponentsPoint = 0;
+  for (game of this.games) {
+    ourPoints += game['ourPoints'];
+    opponentsPoint += game['opponentsPoint'];
+  };
+
+
+  return {ourPoints,opponentsPoint};
+}, // ,==== end of calculate totals
+
+
+
+
+//get games average:
+getGamesAverages() {
+  let gamesPlayed = (Object.keys(this.games)).length;
+  let ourAverages =0;
+  let opponentsAverages = 0;
+  const averages = {};
+
+
+  for (game of this.games) {
+
+    ourAverages += game['ourPoints'];
+    opponentsAverages += game['opponentsPoint'];
+      }; 
+
+  ourAverages = Math.floor(ourAverages/gamesPlayed);
+  opponentsAverages = Math.floor(opponentsAverages/gamesPlayed);
+  averages['ourAverages'] = ourAverages;
+  averages['opponentsAverages'] = opponentsAverages;
+
+
+
+  return averages;
+  
+  }, // <==== end of games averages
+
+
+
+
+
+
+getTeamAverageAge() {
+
+  let playersCount = (Object.keys(this.players)).length;
+  let totalAge = 0;
+  let averageAge;
+
+  for (player of this.players) {
+    totalAge += player['age'];
+    };
+
+  averageAge = totalAge/playersCount;
+  return averageAge;
+}, //<=== end of our team average age
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};  //<= end of team obj.
+
+
+
+
+
+team.addplayer('micky','mouse',4);
+team.addplayer('minie','mousita',6);
+
+team.addGame('decin',50,102);
+team.addGame('liberec',65,20);
+
+
+
+
+
+console.log(team.games);
+console.log(team.players);
+console.log(team.getTeamAverageAge());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('end of code here.')
